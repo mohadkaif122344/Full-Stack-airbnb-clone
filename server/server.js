@@ -15,10 +15,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(
   cors({
-    origin: [
-      "https://client-6lwgjl90u-mohadkaif122344s-projects.vercel.app",
-      "http://localhost:5173",
-    ],
+    origin:"http://localhost:5173",
     credentials: true,
   })
 );
