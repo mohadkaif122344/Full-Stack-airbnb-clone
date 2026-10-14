@@ -81,6 +81,8 @@ const handleViewCard = async (id) => {
       }
     );
     setCardDetails(data.listing);
+     console.log("Status:", error.response?.status);
+    console.log("Message:", error.response?.data?.message);
   } catch (error) {
     toast.error(error.response?.data?.message);
     setCardDetails(null);
