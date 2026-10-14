@@ -15,7 +15,10 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://client-sigma-teal-65.vercel.app",
+    origin: [
+      "https://client-sigma-teal-65.vercel.app",
+      "http://localhost:5173",
+    ],
     credentials: true,
   })
 );
