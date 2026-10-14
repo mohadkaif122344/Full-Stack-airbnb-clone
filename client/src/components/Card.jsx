@@ -27,7 +27,7 @@ const Card = ({
 
 
   return (
-    <div className="w-[330px] max-w-[90%] h-[450px] flex items-start justify-start flex-col rounded-lg cursor-pointer relative">
+    <div className="w-[290px] max-w-[90%] h-[390px] flex items-start justify-start flex-col rounded-lg cursor-pointer relative">
       {isBooked && (
         <div className="text-green-700 bg-white rounded-lg absolute flex items-center text-[18px] justify-center right-1 top-1 gap-3 p-2">
           <GiConfirmed className="w-5 h-5 text-green-700" />
@@ -78,8 +78,8 @@ const Card = ({
             {ratings}
           </span>
         </div>
-        <span className="text-[15px] w-[80%]  text-ellipsis overflow-hidden font-semibold text-nowrap ">
-          {title?.toUpperCase()}
+        <span className="text-[18px] w-[80%]  text-ellipsis text-gray-600 overflow-hidden  text-nowrap ">
+          {title}
         </span>
         <span className="text-[16px] text-ellipsis overflow-hidden font-semibold text-nowrap text-gray-600">
           ₹{rent}/day
