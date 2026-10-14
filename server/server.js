@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "https://client-sigma-teal-65.vercel.app",
+      "https://client-6lwgjl90u-mohadkaif122344s-projects.vercel.app",
       "http://localhost:5173",
     ],
     credentials: true,
