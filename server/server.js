@@ -15,7 +15,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(
   cors({
-    origin:"https://full-stack-airbnb-clone-xi.vercel.app",
+    origin:process.env.FRONTEND_URL,
     credentials: true,
   })
 );
