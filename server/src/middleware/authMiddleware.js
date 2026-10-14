@@ -1,20 +1,29 @@
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 
-const authMiddleware = async(req, res, next)=>{
-try {
-    const {token} = req.cookies
+const authMiddleware = (req, res, next) => {
+  try {
+    const { token } = req.cookies;
+
     if (!token) {
-        return res.status(200).json({success: false, message:"user don't have a token"})
+      return res.status(401).json({
+        success: false,
+        message: "Authentication required"
+      });
     }
-    const verifyToken = jwt.verify(token, process.env.JWT_SECRET);
-    if (!verifyToken) {
-        return res.status(401).json({success: false, message:"user don't have a valid token"}) 
-    }
-    req.userId = verifyToken.userId;
 
-    next()
-} catch (error) {
-    res.status(401).json({success:false, message: error.message})
-}
-}
-export default authMiddleware
+    const verifyToken = jwt.verify(
+      token,
+      process.env.JWT_SECRET
+    );
+
+    req.userId = verifyToken.userId;
+    next();
+  } catch (error) {
+    return res.status(401).json({
+      success: false,
+      message: "Invalid or expired token"
+    });
+  }
+};
+
+export default authMiddleware;
