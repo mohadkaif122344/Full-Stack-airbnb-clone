@@ -22,7 +22,7 @@ export const Signup = async (req, res) => {
     const token = genToken(user._id);
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.Node_ENVIROMENT==="production",
+      secure: process.env.NODE_ENV === "production",
       sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
@@ -44,9 +44,9 @@ export const Login = async (req, res) => {
       });
     }
     const user = await User.findOne({ email }).populate(
-    "listing",
-    "title image1 image2 image3 description rent category city landMark"
-  );
+      "listing",
+      "title image1 image2 image3 description rent category city landMark",
+    );
     if (!user) {
       return res
         .status(400)
@@ -58,10 +58,10 @@ export const Login = async (req, res) => {
         .status(400)
         .json({ success: false, message: "Incorrect password" });
     }
-    const token =  genToken(user._id);
+    const token = genToken(user._id);
     res.cookie("token", token, {
       httpOnly: true,
-       secure: process.env.Node_ENVIROMENT==="production",
+      secure: process.env.NODE_ENV === "production",
       sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
@@ -75,7 +75,11 @@ export const Login = async (req, res) => {
 
 export const Logout = async (req, res) => {
   try {
-    res.clearCookie("token");
+    res.clearCookie("token", {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "none",
+});
     return res
       .status(200)
       .json({ success: true, message: "Logout successfully" });
@@ -89,7 +93,16 @@ export const Logout = async (req, res) => {
 
 export const getCurrentUser = async (req, res) => {
   try {
-    const user = await User.findById(req.userId).select("-password").populate("listing","title image1 image2 image3 description rent category city landMark isBooked host ratings").populate("booking","title image1 image2 image3 description rent category city landMark isBooked host ratings");
+    const user = await User.findById(req.userId)
+      .select("-password")
+      .populate(
+        "listing",
+        "title image1 image2 image3 description rent category city landMark isBooked host ratings",
+      )
+      .populate(
+        "booking",
+        "title image1 image2 image3 description rent category city landMark isBooked host ratings",
+      );
     if (!user) {
       return res.status(404).json({
         success: false,
