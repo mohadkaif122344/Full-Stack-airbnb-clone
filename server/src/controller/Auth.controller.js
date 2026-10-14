@@ -22,7 +22,7 @@ export const Signup = async (req, res) => {
     const token = genToken(user._id);
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,
+      secure: process.env.Node_ENVIROMENT==="production",
       sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
@@ -61,7 +61,7 @@ export const Login = async (req, res) => {
     const token =  genToken(user._id);
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,
+       secure: process.env.Node_ENVIROMENT==="production",
       sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
