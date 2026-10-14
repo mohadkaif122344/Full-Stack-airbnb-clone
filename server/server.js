@@ -13,9 +13,12 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(cors({ origin: process.env.FRONTEND_URI,
-   credentials:true
- }));
+app.use(
+  cors({
+    origin: "https://client-sigma-teal-65.vercel.app",
+    credentials: true,
+  })
+);
 app.use(cookieParser());
 
 app.get("/", (_, res) => {
