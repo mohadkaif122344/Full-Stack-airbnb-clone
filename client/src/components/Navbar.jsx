@@ -70,18 +70,18 @@ const [input, setInput] = useState("");
     <div className="fixed top-0 left-0 w-full z-50 bg-white">
       <div className="w-full h-16 border-b px-10 flex items-center justify-between">
           <div className="flex items-center gap-2">
-  <FaAirbnb className="w-10 h-10 text-[#FF385C]" />
-  <span className="text-2xl font-bold text-[#FF385C]">airbnb</span>
+  <FaAirbnb className="w-10 h-10 text-red-500" />
+  <span className="text-2xl font-bold text-red-500">airbnb</span>
 </div>
-        <div className="relative  justify-center items-center hidden md:block">
+        <div className="relative  justify-center items-center hidden md:block pr-20">
           <input
           onChange={(e)=>setInput(e.target.value)}
           value={input}
             type="text"
             placeholder="Any Where | Any Location | Any City"
-            className="w-96 px-6 py-2 border-2 border-gray-100 outline-none overflow-auto rounded-full "
+            className="w-[185%] px-7 py-2 border-2 border-gray-100 outline-none overflow-auto rounded-full "
           />
-          <button className="absolute p-2 bg-red-600 right-2 rounded-full top-1/2 -translate-y-1/2">
+          <button className="absolute p-2 bg-red-600 -right-36 rounded-full top-1/2 -translate-y-1/2">
             <IoSearch className="w-5 h-5 text-white" />
           </button>
         </div>
@@ -187,7 +187,7 @@ const [input, setInput] = useState("");
           </button>
         </div>
       </div>
-      <div className="flex w-full mt-2 h-20 items-center gap-5 text-sm cursor-pointer overflow-x-auto px-4 md:justify-center md:px-0">
+      <div className="flex w-full mt-2 h-20 items-center gap-8 text-sm cursor-pointer overflow-x-auto px-4 md:justify-center md:px-0">
         <div
           onClick={() => {
             handleCategory("trending");
