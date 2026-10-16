@@ -6,6 +6,15 @@ A full-stack property rental web application inspired by Airbnb, built using the
 
 - **Live Website:** [View Live Demo](https://full-stack-airbnb-clone-xi.vercel.app)
 
+<img width="1908" height="827" alt="Screenshot 2026-10-16 234448" src="https://github.com/user-attachments/assets/f92df6b2-517b-4ad4-8148-22d0fbdd31f9" />
+
+<img width="1907" height="828" alt="Screenshot 2026-10-16 234515" src="https://github.com/user-attachments/assets/412621d1-95c2-42f8-8810-45e01ad5d7d9" />
+
+<img width="1905" height="832" alt="Screenshot 2026-10-17 002239" src="https://github.com/user-attachments/assets/2da9c10a-4c5f-49e5-aff2-722bfed5e4b6" />
+
+<img width="1907" height="828" alt="Screenshot 2026-10-17 002216" src="https://github.com/user-attachments/assets/7f476c08-5a69-4cf6-8440-4126d38d36e0" />
+
+
 ## 📖 About The Project
 
 This project provides a platform for users to discover and book properties online. It includes user authentication, property listing management, image uploads, booking functionality, and rent calculation. The application demonstrates full-stack development using React.js, Node.js, Express.js, and MongoDB.

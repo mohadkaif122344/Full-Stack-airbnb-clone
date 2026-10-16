@@ -11,7 +11,6 @@ const ViewDetailCard = () => {
   const [showUpdatePopUp, setShowUpdatePopUp] = useState(false);
   const [showBookingPopUp, setShowBookingPopUp] = useState(false);
 
-  
   const { id } = useParams();
 
   const { loading, cardDetails, handleViewCard } =
@@ -31,6 +30,7 @@ const ViewDetailCard = () => {
       </div>
     );
   }
+
 if (!cardDetails) {
   return (
     <div className="w-full h-screen flex items-center justify-center">
@@ -38,6 +38,7 @@ if (!cardDetails) {
     </div>
   );
 }
+
   return (
     <div className="w-full min-h-screen bg-white flex flex-col items-center overflow-y-auto relative py-20 ">
       <div className="fixed top-10 right-5 w-44 md:w-48 h-11 text-lg md:text-xl flex items-center justify-center bg-red-600 text-white rounded-full shadow-lg">
