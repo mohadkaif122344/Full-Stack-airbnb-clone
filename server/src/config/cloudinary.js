@@ -1,29 +1,58 @@
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
+import { Readable } from "stream";
 
-const uploadOnCloudinary = async (filepath) => {
-  cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
-    secure: true
-  });
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
+});
+
+const uploadOnCloudinary = async (file) => {
+  if (!file) {
+    return null;
+  }
+
   try {
-    if (!filepath) {
-      return null;
-    }
-    const uploadResult = await cloudinary.uploader.upload(filepath, {
-      folder: "airbnb",
-      resource_type: "image",
-    });
+    let uploadResult;
 
-    fs.unlinkSync(filepath);
+    if (Buffer.isBuffer(file)) {
+      uploadResult = await new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+          {
+            folder: "airbnb",
+            resource_type: "image",
+          },
+          (error, result) => {
+            if (error) return reject(error);
+            resolve(result);
+          }
+        );
+
+        Readable.from([file]).pipe(stream);
+      });
+    } else {
+      uploadResult = await cloudinary.uploader.upload(file, {
+        folder: "airbnb",
+        resource_type: "image",
+      });
+
+      if (fs.existsSync(file)) {
+        fs.unlinkSync(file);
+      }
+    }
+
     return uploadResult.secure_url;
   } catch (error) {
-    console.log("CLOUDINARY ERROR:", error);
+    console.error("CLOUDINARY ERROR:", error);
 
-    fs.unlinkSync(filepath);
+    if (typeof file === "string" && fs.existsSync(file)) {
+      fs.unlinkSync(file);
+    }
+
+    throw error;
   }
 };
-export default uploadOnCloudinary;
 
+export default uploadOnCloudinary;

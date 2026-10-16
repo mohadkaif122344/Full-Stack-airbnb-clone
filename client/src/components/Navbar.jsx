@@ -1,4 +1,3 @@
-import logo from "../assets/logo.jpg";
 import { IoSearch } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
@@ -48,7 +47,6 @@ const [input, setInput] = useState("");
     }
   };
 
-  //Filter category
   const handleCategory = (category) => {
     setCateg(category);
     if (category == "trending") {
@@ -69,7 +67,7 @@ const [input, setInput] = useState("");
   return (
     <div className="fixed top-0 left-0 w-full z-50 bg-white">
       <div className="w-full h-16 border-b px-10 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <div onClick={()=>navigate("/")} className="flex items-center gap-2 cursor-pointer">
   <FaAirbnb className="w-10 h-10 text-red-500" />
   <span className="text-2xl font-bold text-red-500">airbnb</span>
 </div>

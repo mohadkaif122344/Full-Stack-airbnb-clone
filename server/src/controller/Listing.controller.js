@@ -6,9 +6,9 @@ export const addListing = async (req, res) => {
   try {
     const host = req.userId;
     const { title, description, rent, city, landMark, category } = req.body;
-    const image1 = await uploadOnCloudinary(req.files.image1[0].path);
-    const image2 = await uploadOnCloudinary(req.files.image2[0].path);
-    const image3 = await uploadOnCloudinary(req.files.image3[0].path);
+    const image1 = await uploadOnCloudinary(req.files.image1[0].buffer);
+const image2 = await uploadOnCloudinary(req.files.image2[0].buffer);
+const image3 = await uploadOnCloudinary(req.files.image3[0].buffer);
 
     if (!image1 || !image2 || !image3) {
       return res.status(400).json({
@@ -84,13 +84,13 @@ export const updateListing = async (req, res) => {
     let image3;
     const { title, description, rent, city, landMark, category } = req.body;
     if (req.files.image1) {
-      image1 = await uploadOnCloudinary(req.files.image1[0].path);
+      image1 = await uploadOnCloudinary(req.files.image1[0].buffer);
     }
     if (req.files.image2) {
-      image2 = await uploadOnCloudinary(req.files.image2[0].path);
+      image2 = await uploadOnCloudinary(req.files.image2[0].buffer);
     }
     if (req.files.image3) {
-      image3 = await uploadOnCloudinary(req.files.image3[0].path);
+      image3 = await uploadOnCloudinary(req.files.image3[0].buffer);
     }
     const listing = await Listing.findByIdAndUpdate(
       id,
